@@ -1,0 +1,20 @@
+version: '3'
+services:
+  respondent-service:
+    container_name: respondent-service
+    image: rodrigotrentinrossi/respondent-service
+    restart: always
+    build: .
+    ports:
+      - '4001:4001'
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - '27017:27017'
+volumes:
+  mongodata:
